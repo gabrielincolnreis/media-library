@@ -1,12 +1,7 @@
 package com.bluegravitystudio.entity;
 
-import java.time.LocalTime;
 
 import jakarta.validation.constraints.NotBlank;
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Data;
-import lombok.NoArgsConstructor;
 
 import jakarta.persistence.*;
 
@@ -28,6 +23,8 @@ public class Media {
 
     private String content_url;
     private String created_at;
+
+    private Long rating;
 
     public Media() {
     }
@@ -96,5 +93,13 @@ public class Media {
 
     public void setCreated_at(String created_at) {
         this.created_at = created_at;
+    }
+
+    public Long getRating() {
+        return rating;
+    }
+
+    public void setRating(Long rating) {
+        this.rating = rating;
     }
 }

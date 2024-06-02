@@ -29,10 +29,10 @@ public class AuthenticationService {
     }
 
     public User signup(RegisterUserDto input) {
-        var user = new User(
-                input.getFullName(),
-                input.getEmail(),
-                passwordEncoder.encode(input.getPassword()));
+        var user = new User()
+                .setFullName(input.getFullName())
+                .setEmail(input.getEmail())
+                .setPassword(passwordEncoder.encode(input.getPassword()));
 
         return userRepository.save(user);
     }

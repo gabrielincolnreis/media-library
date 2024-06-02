@@ -2,7 +2,7 @@ package com.bluegravitystudio.entity;
 
 import jakarta.persistence.*;
 import jakarta.validation.constraints.Max;
-import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotNull;
 
 @Entity
 @Table(name="rating")
@@ -11,13 +11,13 @@ public class Rating {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long ratingId;
-    @NotBlank
+    @NotNull
     private Long userId;
-    @NotBlank
+    @NotNull
     private Long mediaId;
 
-    @Max(10)
-    @NotBlank
+    @Max(value = 5, message = "must be less than 5")
+    @NotNull
     private Long rating;
 
     public Rating() {

@@ -12,4 +12,7 @@ public interface MediaService {
     Media updateMedia(Media media, Long mediaId) throws Exception;
 
     void deleteMediaById(Long mediaId) throws Exception;
+
+    Media updateMediaRating(Long mediaId) throws Exception;
+
 }

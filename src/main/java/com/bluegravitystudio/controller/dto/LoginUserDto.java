@@ -1,8 +1,11 @@
 package com.bluegravitystudio.controller.dto;
 
-public class LoginUserDto {
-    private String email;
+import jakarta.validation.constraints.NotBlank;
 
+public class LoginUserDto {
+    @NotBlank(message = "email cannot be null")
+    private String email;
+    @NotBlank(message = "password cannot be null")
     private String password;
 
     public LoginUserDto() {
