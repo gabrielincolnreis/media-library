@@ -33,10 +33,37 @@ public class MediaServiceImpl implements MediaService{
 
         if(mediaRepository.findById(mediaId).isPresent()){
             Media mediaFounded  = mediaRepository.findById(mediaId).get();
+
+            if(Objects.nonNull(media.getTitle())){{
+                mediaFounded.setTitle(media.getTitle());
+            }}
+
+            if(Objects.nonNull(media.getDescription())){{
+                mediaFounded.setDescription(media.getDescription());
+            }}
+
+            if(Objects.nonNull(media.getCategory())){{
+                mediaFounded.setCategory(media.getCategory());
+            }}
+
+            if(Objects.nonNull(media.getThumbnail_url())){{
+                mediaFounded.setThumbnail_url(media.getThumbnail_url());
+            }}
+
+            if(Objects.nonNull(media.getContent_url())){{
+                mediaFounded.setContent_url(media.getContent_url());
+            }}
+
+            if(Objects.nonNull(media.getCreated_at())){{
+                mediaFounded.setCreated_at(media.getCreated_at());
+            }}
+
             mediaRepository.save(mediaFounded);
-            return mediaFounded;
+            return media;
+        } else{
+            throw new Exception("Media not found");
         }
-        throw new Exception("Media not found");
+
 
     }
 
@@ -45,8 +72,10 @@ public class MediaServiceImpl implements MediaService{
 
         if(mediaRepository.findById(mediaId).isPresent()){
             mediaRepository.deleteById(mediaId);
+        }else {
+            throw new Exception("Media not found");
         }
-        throw new Exception("Media not found");
+
     }
 
     public Media updateMediaRating(Long mediaId) throws Exception {
@@ -66,7 +95,9 @@ public class MediaServiceImpl implements MediaService{
             mediaFounded.setRating(average/count);
             mediaRepository.save(mediaFounded);
             return mediaFounded;
+        } else {
+            throw new Exception("Media not found");
         }
-        throw new Exception("Media not found");
+
     }
 }

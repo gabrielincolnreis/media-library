@@ -31,7 +31,7 @@ public class MediaController{
     }
 
     @PutMapping("/update/{id}")
-    public ResponseEntity<Media> updateMedia(@RequestBody Media media, @PathVariable("id") Long mediaId) {
+    public ResponseEntity<Media> updateMedia(@Valid @RequestBody Media media, @PathVariable("id") Long mediaId) {
         try{
             return ResponseEntity.ok(mediaService.updateMedia(media, mediaId));
         } catch (Exception e){
