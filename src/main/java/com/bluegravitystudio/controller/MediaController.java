@@ -6,27 +6,31 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+
 import jakarta.validation.Valid;
 import java.util.List;
 
 @RestController
-@RequestMapping(path = "media")
+@RequestMapping(path = "/media")
 public class MediaController{
 
-    @Autowired
-    private MediaService mediaService;
+    private final MediaService mediaService;
 
-    @PostMapping("create")
+    public MediaController(MediaService mediaService) {
+        this.mediaService = mediaService;
+    }
+
+    @PostMapping("/create")
     public ResponseEntity<Media> saveMedia(@Valid @RequestBody Media media){
         return ResponseEntity.ok(mediaService.saveMedia(media));
     }
 
-    @GetMapping("list")
+    @GetMapping("/list")
     public ResponseEntity<List<Media>> mediaList() {
         return ResponseEntity.ok(mediaService.mediaList());
     }
 
-    @PutMapping("update/{id}")
+    @PutMapping("/update/{id}")
     public ResponseEntity<Media> updateMedia(@RequestBody Media media, @PathVariable("id") Long mediaId) {
         try{
             return ResponseEntity.ok(mediaService.updateMedia(media, mediaId));
@@ -35,7 +39,7 @@ public class MediaController{
         }
     }
 
-    @DeleteMapping("delete/{id}")
+    @DeleteMapping("/delete/{id}")
     public ResponseEntity<?> deleteMediaById(@PathVariable("id") Long mediaId) {
 
         try{

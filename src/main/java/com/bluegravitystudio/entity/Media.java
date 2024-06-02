@@ -2,6 +2,7 @@ package com.bluegravitystudio.entity;
 
 import java.time.LocalTime;
 
+import jakarta.validation.constraints.NotBlank;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -16,12 +17,20 @@ public class Media {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long mediaId;
+    @NotBlank
     private String title;
+    @NotBlank
     private String description;
+    @NotBlank
     private String category;
+
     private String thumbnail_url;
+
     private String content_url;
     private String created_at;
+
+    public Media() {
+    }
 
     public Media(Long mediaId, String title, String description, String category, String thumbnail_url, String content_url, String created_at) {
         this.mediaId = mediaId;
@@ -31,9 +40,6 @@ public class Media {
         this.thumbnail_url = thumbnail_url;
         this.content_url = content_url;
         this.created_at = created_at;
-    }
-
-    public Media() {
     }
 
     public Long getMediaId() {
